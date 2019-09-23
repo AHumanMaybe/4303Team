@@ -1,7 +1,7 @@
 # 4303Team
 
 ### Current Status
-- Robot: Still in shambles  (9/7/19)
+- Robot: Still in shambles  (9/23/19)
 - Programming: Usercontrol finished, autonomous in progress (9/23/19)
 - Notebook: What notebook?  (9/7/19)
 - General: Eh, better   (9/23/19)
