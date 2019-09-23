@@ -18,16 +18,22 @@ vex::brain Brain = vex::brain();
 
 vex::controller Controller = vex::controller();
 
+
+//base
 vex::motor A = vex::motor(vex::PORT1);
 vex::motor B = vex::motor(vex::PORT5, true);
 vex::motor HD = vex::motor(vex::PORT11);
 
+
+//arm
 vex::motor CLAW = vex::motor(vex::PORT15);
 vex::motor L1 = vex::motor(vex::PORT16);
 vex::motor L2 = vex::motor(vex::PORT16);
 vex::motor R1 = vex::motor(vex::PORT16, true);
 vex::motor R2 = vex::motor(vex::PORT20, true);
 
+//sensors
 vex::pot AUTO = vex::pot(Brain.ThreeWirePort.A);
 vex::limit LIMIT = vex::limit(Brain.ThreeWirePort.D);
+vex::gyro GYRO = vex::gyro(Brain.ThreeWirePort.E);
 vex::line LINE = vex::line(Brain.ThreeWirePort.H);
