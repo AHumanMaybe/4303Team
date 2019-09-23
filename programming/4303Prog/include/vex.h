@@ -6,7 +6,6 @@
 /*    Description:  Default header for V5 projects                            */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
-//
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,7 +15,6 @@
 #include "v5_vcs.h"
 
 vex::brain Brain = vex::brain();
-vex::competition Competition = vex::competition();
 
 vex::controller Controller = vex::controller();
 
