@@ -1,47 +1,26 @@
-#include "usercontrol.h"
+#include "v5.h"
+#include "v5_vcs.h"
 #include "vision.h"
 
 using namespace vex;
 
-//dark = high, light - low
-long int lightlevel;
-long int potvalue;
-vision::signature colors[] = {ORANGE, GREEN, PURPLE};
-
 //=============================================================================
-//define ALL MOTORS AND SENSORS
-
-extern brain Brain;
-extern controller Controller;
-
-//BASE
-extern motor A;
-extern motor B;
-extern motor HD;
-
-//ARM
-extern motor CLAW;
-extern motor L1;
-extern motor L2;
-extern motor R1;
-extern motor R2;
-
 //SENSORS
 extern line LINE; 
-extern pot POT;
+extern pot AUTO;
 extern limit LIMIT;
 extern gyro GYRO; //degrees of rotation * 10 = gyro value (long/int32_t)
 //=============================================================================
 
 void pre_auton(void)
 {
+  /*
   lightlevel = LINE.value(analogUnits::range12bit); //0 (shining light) to 4095 (pitch black)
   potvalue = POT.value(analogUnits::range12bit); //0 to 4095
-  GYRO.startCalibration(1300);
+  GYRO.startCalibration(1300);*/
 }
-
 void autonomous(void) 
-{
+{/*
   short c = 1;
   vision::object *cube;
   VS.takeSnapshot(ORANGE);
@@ -107,5 +86,5 @@ void autonomous(void)
 
   HD.stop(brakeType::brake);
 
-  //TODO: move toward and grab cube
+  //TODO: move toward and grab cube*/
 }
