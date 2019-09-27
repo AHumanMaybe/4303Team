@@ -16,6 +16,6 @@
 - Emily Arbieto: Programmer/Notebooking
 - Evan Hess: Programmer
 - Daniel Horvath: Builder
-- Lucas Parker: Notebooking
+- Lucas Parker: Notebooking/Spokesperson
 - Anthony Perry: Designer/Builder
 - Marco Zamora: Designer/Builder
