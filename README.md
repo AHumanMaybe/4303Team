@@ -1,10 +1,10 @@
 # 4303Team
 
 ### Current Status
-- Robot: Still in shambles  (9/23/19)
-- Programming: Usercontrol finished, autonomous in progress (9/23/19)
-- Notebook: What notebook?  (9/7/19)
-- General: Eh, better   (9/23/19)
+- Robot: 1/3 done (9/26/19)
+- Programming: Must redo usercontrol, autonomous in progress (9/26/19)
+- Notebook: Notebook creation under progress (9/26/19)
+- General: On the way to compete (9/26/19)
 
 ### Where to Store Resources
 - Robot designs and prototypes should be in "building"
@@ -16,6 +16,6 @@
 - Emily Arbieto: Programmer/Notebooking
 - Evan Hess: Programmer
 - Daniel Horvath: Builder
-- Lucas Parker: Notebooking
+- Lucas Parker: Notebooking/Spokesperson
 - Anthony Perry: Designer/Builder
 - Marco Zamora: Designer/Builder
