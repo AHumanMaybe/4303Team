@@ -13,7 +13,6 @@
 
 #include "v5.h"
 #include "v5_vcs.h"
-#include "robot-config.h"
 
 vex::brain Brain = vex::brain();
 
@@ -32,12 +31,3 @@ vex::pot AUTO = vex::pot(Brain.ThreeWirePort.A);
 vex::limit LIMIT = vex::limit(Brain.ThreeWirePort.D);
 vex::gyro GYRO = vex::gyro(Brain.ThreeWirePort.E);
 vex::line LINE = vex::line(Brain.ThreeWirePort.H);
-
-
-#define waitUntil(condition)                                                   \
-  do {                                                                         \
-    wait(5, msec);                                                             \
-  } while (!(condition))
-
-#define repeat(iterations)                                                     \
-  for (int iterator = 0; iterator < iterations; iterator++)

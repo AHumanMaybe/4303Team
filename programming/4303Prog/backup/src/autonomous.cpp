@@ -64,7 +64,7 @@ void autonomous(void)
   Controller.Screen.setCursor(1, 1);
   Controller.Screen.print("Looking for object...");
 
-  while(!VS.largestObject.exists && !(VS.largestObject.width > 15)) //resolution is 316x212
+  while(!VS.largestObject.exists || !(VS.largestObject.width > 15)) //resolution is 316x212
   {
     VS.takeSnapshot(colors[c]);
     c++;
