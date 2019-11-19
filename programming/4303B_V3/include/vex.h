@@ -27,7 +27,7 @@ vex::motor hdrive(vex::PORT6);
 vex::smartdrive base(b_left, b_right, GYRO, 319.19, 355.6, 130, vex::distanceUnits::mm);
 
 //arm (r1, r2)
-vex::motor l_arm(vex::PORT11);
+vex::motor l_arm(vex::PORT11, true);
 vex::motor r_arm(vex::PORT15);
 vex::motor_group arm(l_arm, r_arm);
 

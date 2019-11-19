@@ -18,6 +18,7 @@
 /*---Bottom Claw-----[20]-----------------[X]-[B]------------*/
 /*---Radio-----------[21]------------------[N/A]-------------*/
 /*---Gyro------------[A]-------------------[N/A]-------------*/
+/*---Potentiometer---[D]-------------------[N/A]-------------*/
 /*---Limit Switch----[H]-------------------[N/A]-------------*/
 
 #include "vex.h"
@@ -39,7 +40,7 @@ void autonomous()
 void usercontrol()
 {
   hdrive.setVelocity(75, percentUnits::pct);
-  arm.setVelocity(75, percentUnits::pct);
+  arm.setVelocity(100, percentUnits::pct);
   top.setVelocity(50, percentUnits::pct);
   bottom.setVelocity(50, percentUnits::pct);
 
@@ -48,6 +49,8 @@ void usercontrol()
     b_left.spin(directionType::fwd, Controller.Axis3.position(), percentUnits::pct);
     b_right.spin(directionType::fwd, Controller.Axis2.position(), percentUnits::pct);
 
+
+    //---H-Drive
     if(Controller.ButtonLeft.pressing())
     {
       hdrive.spin(directionType::fwd);
@@ -61,6 +64,8 @@ void usercontrol()
       hdrive.stop();
     }
 
+
+    //---Arm
     if(Controller.ButtonR1.pressing())
     {
       arm.spin(directionType::fwd);
@@ -71,9 +76,10 @@ void usercontrol()
     }
     else 
     {
-      arm.stop();
+      arm.stop(brakeType::hold);
     }
 
+    //---Top claw
     if(Controller.ButtonL1.pressing())
     {
       top.spin(directionType::fwd);
@@ -87,6 +93,7 @@ void usercontrol()
       top.stop();
     }
 
+    //---Bottom claw
     if(Controller.ButtonX.pressing())
     {
       bottom.spin(directionType::fwd);
