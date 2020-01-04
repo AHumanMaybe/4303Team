@@ -19,27 +19,22 @@ vex::brain Brain = vex::brain();
 vex::controller Controller = vex::controller();
 
 vex::gyro GYRO(Brain.ThreeWirePort.A);
-vex::limit LIMIT(Brain.ThreeWirePort.H);
+vex::light LINE(Brain.ThreeWirePort.B);
+vex::pot POT(Brain.ThreeWirePort.D);
+vex::pot POT2(Brain.ThreeWirePort.E);
+vex::limit LL(Brain.ThreeWirePort.G);
+vex::limit RL(Brain.ThreeWirePort.H);
 
 vex::motor b_left(vex::PORT13);
 vex::motor b_right(vex::PORT17, true);
-vex::motor hdrive(vex::PORT6);
 vex::smartdrive base(b_left, b_right, GYRO, 319.19, 355.6, 130, vex::distanceUnits::mm);
 
-//arm (r1, r2)
-vex::motor l_arm(vex::PORT11, true);
-vex::motor r_arm(vex::PORT15);
-vex::motor_group arm(l_arm, r_arm);
+//arm (l1, r1) [r1 is up]
+vex::motor l_arm1(vex::PORT14, vex::gearSetting::ratio36_1, true);
+vex::motor l_arm2(vex::PORT12, vex::gearSetting::ratio36_1);
+vex::motor r_arm1(vex::PORT15, vex::gearSetting::ratio36_1, true);
+vex::motor r_arm2(vex::PORT16, vex::gearSetting::ratio36_1);
+vex::motor_group arm(l_arm1, l_arm2, r_arm1, r_arm2);
 
-//top claw (l1, l2) [1 is open]
-vex::motor top(vex::PORT2);
-//bottom claw (x, b) [x is open]
-vex::motor bottom(vex::PORT4);
-
-#define waitUntil(condition)                                                   \
-  do {                                                                         \
-    wait(5, msec);                                                             \
-  } while (!(condition))
-
-#define repeat(iterations)                                                     \
-  for (int iterator = 0; iterator < iterations; iterator++)
+//bottom claw (l2, r2) [r2 is open]
+vex::motor claw(vex::PORT4, true);

@@ -11,25 +11,39 @@
 /*---Left Base-------[13]--------------[Left Stick]----------*/
 /*---Right Base------[17]--------------[Right Stick]---------*/
 /*---H-Drive---------[6]---------------[Left]-[Right]--------*/
-/*---Vision Sensor---[10]------------------[N/A]-------------*/
-/*---Left Arm--------[11]----------------[R1]-[R2]-----------*/
-/*---Right Arm-------[15]----------------[R1]-[R2]-----------*/
-/*---Top Claw--------[2]-----------------[L1]-[L2]-----------*/
-/*---Bottom Claw-----[4]------------------[X]-[B]------------*/
+/*---Vision Sensor---[20]------------------[N/A]---- ---------*/
+/*---Left Arm--------[11]----------------[R1]-[L1]-----------*/
+/*---Right Arm-------[15]----------------[R1]-[L1]-----------*/
+/*---Claw------------[4]-----------------[R2]-[L2]-----------*/
 /*---Radio-----------[21]------------------[N/A]-------------*/
 /*---Gyro------------[A]-------------------[N/A]-------------*/
-/*---Potentiometer---[D]-------------------[N/A]-------------*/
-/*---Limit Switch----[H]-------------------[N/A]-------------*/
+/*---Line Follower---[B]-------------------[N/A]-------------*/
+/*---Tower/Stack-----[D]-------------------[L/R]-------------*/
+/*---Left/Right------[E]-------------------[L/R]-------------*/
+/*---Left Limit------[G]-------------------[N/A]-------------*/
+/*---Right Limit-----[H]-------------------[N/A]-------------*/
 
-#include "vex.h"
+#include "vision.h"
 
 using namespace vex;
 
 competition Competition = competition();
+int potval, typeval;
+const double TILE = 589.28; //mm
+bool b = false;
+ 
+void upArm();
+void downArm();
 
 void pre_auton()
 {
-
+  GYRO.startCalibration();
+  while(GYRO.isCalibrating())
+  {
+    vex::task::sleep(10);
+  }
+  potval = POT.value(percentUnits::pct);
+  typeval = POT2.value(percentUnits::pct);
 }
 
 void autonomous()
@@ -39,30 +53,13 @@ void autonomous()
 
 void usercontrol()
 {
-  hdrive.setVelocity(75, percentUnits::pct);
-  arm.setVelocity(100, percentUnits::pct);
-  top.setVelocity(50, percentUnits::pct);
-  bottom.setVelocity(50, percentUnits::pct);
+  arm.setVelocity(50, percentUnits::pct);
+  claw.setVelocity(50, percentUnits::pct);
 
   while(true)
   {
     b_left.spin(directionType::fwd, Controller.Axis3.position(), percentUnits::pct);
     b_right.spin(directionType::fwd, Controller.Axis2.position(), percentUnits::pct);
-
-
-    //---H-Drive
-    if(Controller.ButtonLeft.pressing())
-    {
-      hdrive.spin(directionType::fwd);
-    }
-    else if(Controller.ButtonRight.pressing())
-    {
-      hdrive.spin(directionType::rev);
-    }
-    else 
-    {
-      hdrive.stop();
-    }
 
 
     //---Arm
@@ -72,39 +69,25 @@ void usercontrol()
     }
     else if(Controller.ButtonR2.pressing())
     {
-      arm.spin(directionType::rev,  75, percentUnits::pct);
+      arm.spin(directionType::rev);
     }
     else 
     {
       arm.stop(brakeType::hold);
     }
 
-    //---Top claw
+    //---claw
     if(Controller.ButtonL1.pressing())
     {
-      top.spin(directionType::fwd);
+      claw.spin(directionType::fwd);
     }
     else if(Controller.ButtonL2.pressing())
     {
-      top.spin(directionType::rev);
+      claw.spin(directionType::rev);
     }
     else
     {
-      top.stop();
-    }
-
-    //---Bottom claw
-    if(Controller.ButtonX.pressing())
-    {
-      bottom.spin(directionType::fwd);
-    }
-    else if(Controller.ButtonB.pressing())
-    {
-      bottom.spin(directionType::rev);
-    }
-    else
-    {
-      bottom.stop();
+      claw.stop(brakeType::hold);
     }
   }
 }
@@ -120,4 +103,14 @@ int main()
   {
     vex::task::sleep(10);
   }
+}
+
+void upArm()
+{
+  arm.spinFor(directionType::fwd, 90, rotationUnits::deg, false);
+}
+
+void downArm()
+{
+  arm.spinFor(directionType::rev, 90, rotationUnits::deg, false);
 }
